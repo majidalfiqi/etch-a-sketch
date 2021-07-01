@@ -1,1 +1,35 @@
-/* font-family: 'Fredoka One', cursive; */
+#app {
+  background-color: #e0e0e0;
+  font-family: "Fredoka One", cursive;
+  font-size: 36pt;
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 10fr;
+      grid-template-columns: 2fr 10fr;
+      grid-template-areas: "tools title" "tools main";
+}
+
+#app .title {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: title;
+}
+
+#app .tools {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: tools;
+}
+
+#app .tools img {
+  max-width: 100%;
+}
+
+#app .main {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: main;
+}
+/*# sourceMappingURL=style.css.map */

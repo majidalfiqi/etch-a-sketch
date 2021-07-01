@@ -1,0 +1,44 @@
+//font
+$font: "Fredoka One", cursive;
+$fontSize: 36pt;
+//colors
+$clr-normal: linear-gradient(145deg, #f0f0f0, #cacaca);
+$clr-pressed: #e0e0e0;
+$clr-primary: #787878;
+$clr-normal-dark: linear-gradient(145deg, #292b2f, #222428);
+$clr-primary-dark: #e5e5e5;
+$clr-pressed-dark: #26282c;
+$clr-accent: #46a0fb;
+//shadows
+$shd-normal: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+$shd-pressed: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+$shd-normal-dark: 10px 10px 30px #202225, -10px -10px 30px #2c2e33;
+$shd-pressed-dark: inset 10px 10px 30px #202225, inset -10px -10px 30px #2c2e33;
+
+#app {
+  background-color: $clr-pressed;
+  font-family: $font;
+  font-size: $fontSize;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas:
+    "tools title"
+    "tools main";
+
+  .title {
+    grid-area: title;
+  }
+
+  .tools {
+    grid-area: tools;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .main {
+    grid-area: main;
+  }
+}
