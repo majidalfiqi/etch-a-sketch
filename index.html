@@ -12,6 +12,28 @@
     <title>Etch-a-Sketch</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h1 class="title">Etch-a-Sketch</h1>
+      <aside class="tools">
+        <div class="color"><input type="color" name="color" id="color" /></div>
+        <div class="rainbow"><span class="fas fa-rainbow"></span></div>
+        <div class="lighten"><span class="fas fa-lightbulb"></span></div>
+        <div class="darken"><span class="fas fa-adjust"></span></div>
+        <div class="eraser"><span class="fas fa-eraser"></span></div>
+        <div class="clear"><span class="fas fa-times"></span></div>
+        <div class="darkmode"><span class="fas fa-moon"></span></div>
+        <div class="pixel">
+          <input type="range" name="pixel" id="pixel" step="10" max="100" min="0" value="60" />
+          <span></span>
+        </div>
+        <div class="icons">
+          <span class="fab fa-github"></span>
+          <img src="https://source.unsplash.com/random/400x400?logo" alt="Mano" />
+        </div>
+      </aside>
+      <main class="main">
+        <div class="canvas"></div>
+      </main>
+    </div>
   </body>
 </html>
