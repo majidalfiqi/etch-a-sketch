@@ -12,21 +12,11 @@ $clr-accent: #46a0fb;
 //shadows
 $shd-normal: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
 $shd-pressed: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
-$shd-normal-dark: 10px 10px 30px #202225, -10px -10px 30px #2c2e33;
-$shd-pressed-dark: inset 10px 10px 30px #202225, inset -10px -10px 30px #2c2e33;
-
-//dark mode styles - to be applied to #app by js
-.dark-on {
-  $clr-normal: $clr-normal-dark;
-  $clr-pressed: $clr-pressed-dark;
-  $clr-primary: $clr-primary-dark;
-  $shd-normal: $shd-normal-dark;
-  $shd-pressed: $shd-pressed-dark;
-}
+$shd-normal-dark: 10px 10px 15px #202225, -10px -10px 15px #2c2e33;
+$shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
 
 //styles
-
-#app {
+.app {
   background-color: $clr-pressed;
   font-family: $font;
   font-size: $fontSize;
@@ -83,6 +73,15 @@ $shd-pressed-dark: inset 10px 10px 30px #202225, inset -10px -10px 30px #2c2e33;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+    }
+
+    .rainbow svg,
+    .lighten svg,
+    .darken svg,
+    .eraser svg,
+    .clear svg,
+    .darkmode svg {
+      pointer-events: none;
     }
 
     .color {
@@ -216,6 +215,11 @@ $shd-pressed-dark: inset 10px 10px 30px #202225, inset -10px -10px 30px #2c2e33;
           border-radius: 50%;
         }
       }
+
+      .pressed {
+        background: $clr-pressed;
+        box-shadow: $shd-pressed;
+      }
     }
   }
 
@@ -237,6 +241,78 @@ $shd-pressed-dark: inset 10px 10px 30px #202225, inset -10px -10px 30px #2c2e33;
       box-shadow: $shd-pressed;
       border-radius: 5px;
       overflow: hidden;
+    }
+  }
+}
+
+.dark-on {
+  background-color: $clr-pressed-dark;
+
+  .title {
+    background: $clr-normal-dark;
+    box-shadow: $shd-normal-dark;
+  }
+
+  .tools {
+    color: $clr-primary-dark;
+    background: $clr-normal-dark;
+    box-shadow: $shd-normal-dark;
+
+    .pressed {
+      background: $clr-pressed-dark;
+      box-shadow: $shd-pressed-dark;
+    }
+
+    & > div {
+      background: $clr-normal-dark;
+      box-shadow: $shd-normal-dark;
+    }
+
+    .pixel {
+      input {
+        background: $clr-normal-dark;
+
+        &::-moz-range-track {
+          background: $clr-pressed-dark;
+          box-shadow: $shd-pressed-dark;
+        }
+
+        &::-webkit-slider-runnable-track {
+          background: $clr-pressed-dark;
+          box-shadow: $shd-pressed-dark;
+        }
+
+        &::-ms-track {
+          box-shadow: $shd-pressed-dark;
+        }
+
+        &::-ms-fill-upper {
+          background: $clr-pressed-dark;
+          box-shadow: $shd-pressed-dark;
+        }
+
+        &::-ms-fill-lower {
+          box-shadow: $shd-pressed-dark;
+        }
+      }
+    }
+
+    .icons {
+      .mano,
+      .github {
+        background: $clr-normal-dark;
+        box-shadow: $shd-normal-dark;
+      }
+    }
+  }
+
+  .main {
+    background: $clr-normal-dark;
+    box-shadow: $shd-normal-dark;
+
+    .canvas {
+      background-color: $clr-pressed-dark;
+      box-shadow: $shd-pressed-dark;
     }
   }
 }
