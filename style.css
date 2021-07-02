@@ -1,12 +1,17 @@
 #app {
   background-color: #e0e0e0;
   font-family: "Fredoka One", cursive;
-  font-size: 36pt;
+  font-size: 24pt;
   text-align: center;
+  width: 100vw;
+  height: 100vh;
   display: -ms-grid;
   display: grid;
+  place-items: center;
   -ms-grid-columns: 2fr 10fr;
       grid-template-columns: 2fr 10fr;
+  -ms-grid-rows: 1fr 11fr;
+      grid-template-rows: 1fr 11fr;
       grid-template-areas: "tools title" "tools main";
 }
 
@@ -14,6 +19,15 @@
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: title;
+  color: #46a0fb;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  -webkit-box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+          box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  line-height: 80px;
+  margin: 20px;
 }
 
 #app .tools {
@@ -21,15 +35,216 @@
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: tools;
+  font-size: 0.8em;
+  color: #787878;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  -webkit-box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+          box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+  border-radius: 50px;
+  width: 200px;
+  height: 900px;
+  margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
-#app .tools img {
-  max-width: 100%;
+#app .tools .pressed {
+  background: #e0e0e0;
+  -webkit-box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+          box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+}
+
+#app .tools > div {
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  -webkit-box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+          box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+  border-radius: 50px;
+  width: 70px;
+  height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+#app .tools .color input {
+  width: 40%;
+  height: 40%;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+#app .tools .pixel {
+  width: 180px;
+  height: 60px;
+  cursor: auto;
+}
+
+#app .tools .pixel input {
+  -webkit-appearance: none;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  width: 60%;
+  margin: 3px;
+  cursor: pointer;
+}
+
+#app .tools .pixel input::-moz-range-track {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+}
+
+#app .tools .pixel input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+          box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+}
+
+#app .tools .pixel input::-ms-track {
+  width: 100%;
+  height: 10px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 6px 0;
+  box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+  color: transparent;
+}
+
+#app .tools .pixel input::-ms-fill-upper {
+  background: #e0e0e0;
+  box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+  border-radius: 5px;
+}
+
+#app .tools .pixel input::-moz-range-thumb {
+  border: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #46a0fb;
+}
+
+#app .tools .pixel input::-ms-thumb {
+  border: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #46a0fb;
+}
+
+#app .tools .pixel input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #46a0fb;
+  margin-top: -3px;
+}
+
+#app .tools .pixel input::-moz-range-progress {
+  height: 10px;
+  background: #46a0fb;
+  border: none;
+  border-radius: 5px;
+}
+
+#app .tools .pixel input::-ms-fill-lower {
+  background: #46a0fb;
+  box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+  border-radius: 5px;
+}
+
+#app .tools .pixel input:focus {
+  outline: none;
+}
+
+#app .tools .pixel span {
+  color: #46a0fb;
+  font-size: 0.6em;
+  margin: 3px;
+}
+
+#app .tools .icons {
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  width: 150px;
+}
+
+#app .tools .icons .mano,
+#app .tools .icons .github {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  color: #46a0fb;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  -webkit-box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+          box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  margin: 8px;
+}
+
+#app .tools .icons .mano img,
+#app .tools .icons .github img {
+  max-width: 40px;
+  border-radius: 50%;
 }
 
 #app .main {
   -ms-grid-row: 2;
   -ms-grid-column: 2;
   grid-area: main;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  -webkit-box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+          box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #fff;
+  border-radius: 50px;
+  width: 90%;
+  height: 93%;
+  margin: 20px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+#app .main .canvas {
+  width: 90%;
+  height: 90%;
+  background-color: #e0e0e0;
+  -webkit-box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+          box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+  border-radius: 5px;
+  overflow: hidden;
 }
 /*# sourceMappingURL=style.css.map */
