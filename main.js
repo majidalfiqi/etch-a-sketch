@@ -3,6 +3,7 @@ import "./reset.css";
 
 //query selectors
 const app = document.querySelector(".app");
+const hover = document.querySelector(".hover");
 const color = document.querySelector(".color");
 const colorSelector = document.querySelector("#color");
 const rainbow = document.querySelector(".rainbow");
@@ -18,6 +19,8 @@ const github = document.querySelector(".github");
 const canvas = document.querySelector(".canvas");
 
 //initializations
+const drawModes = ["click", "mouseenter"];
+let drawMode = drawModes[0];
 const options = [color, rainbow, lighten, darken, eraser]; //only one should be selected at a time
 let currentColor = colorSelector.value; //drawing color
 let colorMode = "c";
@@ -93,22 +96,22 @@ for (let i in options) {
       Array.from(canvas.children).forEach((child) => {
         switch (colorMode) {
           case "e":
-            child.removeEventListener("mouseenter", eraserEvent);
+            child.removeEventListener(drawMode, eraserEvent);
             break;
           case "r":
-            child.removeEventListener("mouseenter", rainbowEvent);
+            child.removeEventListener(drawMode, rainbowEvent);
             break;
           case "l":
-            child.removeEventListener("mouseenter", lightenEvent);
+            child.removeEventListener(drawMode, lightenEvent);
             break;
           case "d":
-            child.removeEventListener("mouseenter", darkenEvent);
+            child.removeEventListener(drawMode, darkenEvent);
             break;
           case "c":
           default:
             break;
         }
-        child.addEventListener("mouseenter", colorEvent);
+        child.addEventListener(drawMode, colorEvent);
       });
       colorMode = "c";
     } else if (options[i].classList.contains("eraser")) {
@@ -116,88 +119,88 @@ for (let i in options) {
       Array.from(canvas.children).forEach((child) => {
         switch (colorMode) {
           case "c":
-            child.removeEventListener("mouseenter", colorEvent);
+            child.removeEventListener(drawMode, colorEvent);
             break;
           case "r":
-            child.removeEventListener("mouseenter", rainbowEvent);
+            child.removeEventListener(drawMode, rainbowEvent);
             break;
           case "l":
-            child.removeEventListener("mouseenter", lightenEvent);
+            child.removeEventListener(drawMode, lightenEvent);
             break;
           case "d":
-            child.removeEventListener("mouseenter", darkenEvent);
+            child.removeEventListener(drawMode, darkenEvent);
             break;
           case "e":
           default:
             break;
         }
-        child.addEventListener("mouseenter", eraserEvent);
+        child.addEventListener(drawMode, eraserEvent);
       });
       colorMode = "e";
     } else if (options[i].classList.contains("rainbow")) {
       Array.from(canvas.children).forEach((child) => {
         switch (colorMode) {
           case "c":
-            child.removeEventListener("mouseenter", colorEvent);
+            child.removeEventListener(drawMode, colorEvent);
             break;
           case "e":
-            child.removeEventListener("mouseenter", eraserEvent);
+            child.removeEventListener(drawMode, eraserEvent);
             break;
           case "l":
-            child.removeEventListener("mouseenter", lightenEvent);
+            child.removeEventListener(drawMode, lightenEvent);
             break;
           case "d":
-            child.removeEventListener("mouseenter", darkenEvent);
+            child.removeEventListener(drawMode, darkenEvent);
             break;
           case "r":
           default:
             break;
         }
-        child.addEventListener("mouseenter", rainbowEvent);
+        child.addEventListener(drawMode, rainbowEvent);
       });
       colorMode = "r";
     } else if (options[i].classList.contains("lighten")) {
       Array.from(canvas.children).forEach((child) => {
         switch (colorMode) {
           case "c":
-            child.removeEventListener("mouseenter", colorEvent);
+            child.removeEventListener(drawMode, colorEvent);
             break;
           case "e":
-            child.removeEventListener("mouseenter", eraserEvent);
+            child.removeEventListener(drawMode, eraserEvent);
             break;
           case "r":
-            child.removeEventListener("mouseenter", rainbowEvent);
+            child.removeEventListener(drawMode, rainbowEvent);
             break;
           case "d":
-            child.removeEventListener("mouseenter", darkenEvent);
+            child.removeEventListener(drawMode, darkenEvent);
             break;
           case "l":
           default:
             break;
         }
-        child.addEventListener("mouseenter", lightenEvent);
+        child.addEventListener(drawMode, lightenEvent);
       });
       colorMode = "l";
     } else if (options[i].classList.contains("darken")) {
       Array.from(canvas.children).forEach((child) => {
         switch (colorMode) {
           case "c":
-            child.removeEventListener("mouseenter", colorEvent);
+            child.removeEventListener(drawMode, colorEvent);
             break;
           case "e":
-            child.removeEventListener("mouseenter", eraserEvent);
+            child.removeEventListener(drawMode, eraserEvent);
             break;
           case "r":
-            child.removeEventListener("mouseenter", rainbowEvent);
+            child.removeEventListener(drawMode, rainbowEvent);
             break;
           case "l":
-            child.removeEventListener("mouseenter", lightenEvent);
+            child.removeEventListener(drawMode, lightenEvent);
             break;
           case "d":
           default:
             break;
         }
-        child.addEventListener("mouseenter", darkenEvent);
+        child.addEventListener(drawMode, darkenEvent);
       });
       colorMode = "d";
     }
@@ -208,6 +211,30 @@ for (let i in options) {
     }
   });
 }
+
+//draw mode change
+hover.addEventListener("click", () => {
+  hover.classList.toggle("pressed");
+  drawMode === drawModes[0] ? (drawMode = drawModes[1]) : (drawMode = drawModes[0]);
+  generateGrid();
+  switch (colorMode) {
+    case "c":
+      color.click();
+      break;
+    case "e":
+      eraser.click();
+      break;
+    case "r":
+      rainbow.click();
+      break;
+    case "l":
+      lighten.click();
+      break;
+    case "d":
+      darken.click();
+      break;
+  }
+});
 
 //color change
 colorSelector.addEventListener("change", () => (currentColor = colorSelector.value));

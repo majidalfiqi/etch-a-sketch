@@ -85,6 +85,7 @@
   cursor: pointer;
 }
 
+.app .tools .hover svg,
 .app .tools .rainbow svg,
 .app .tools .lighten svg,
 .app .tools .darken svg,
@@ -92,6 +93,10 @@
 .app .tools .clear svg,
 .app .tools .darkmode svg {
   pointer-events: none;
+}
+
+.app .tools .hover svg {
+  width: 100%;
 }
 
 .app .tools .color input {
@@ -225,8 +230,7 @@
 
 .app .tools .icons .mano img,
 .app .tools .icons .github img {
-  max-width: 40px;
-  border-radius: 50%;
+  width: 50%;
 }
 
 .app .tools .icons .pressed {
