@@ -30,94 +30,175 @@ let pixelSize = pixel.value; //get pixel size from range input
 pixelValue.textContent = pixelSize; //set text to the value
 
 //event listeners
+//event functions
+let colorEvent = (e) => {
+  e.target.style.backgroundColor = currentColor;
+};
+let eraserEvent = (e) => {
+  e.target.style.backgroundColor = currentColor;
+};
+let rainbowEvent = (e) => {
+  e.target.style.backgroundColor = `rgb(${randNum(255)}, ${randNum(255)}, ${randNum(255)})`;
+};
+let lightenEvent = (e) => {
+  let bgc = getComputedStyle(e.target).backgroundColor;
+  if (bgc.indexOf("rgba") > -1) {
+    bgc = RGBToHSL(bgc, true);
+    if (bgc[2] !== 0) {
+      if (bgc[2] + 10 >= 100) {
+        e.target.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 100%, 1)`;
+      } else {
+        e.target.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, ${bgc[2] + 10}%, 1)`;
+      }
+    }
+  } else {
+    bgc = RGBToHSL(bgc, false);
+    if (bgc[2] !== 0) {
+      if (bgc[2] + 10 >= 100) {
+        e.target.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 100%)`;
+      } else {
+        e.target.style.backgroundColor = `hsl(${bgc[0]}, ${bgc[1]}%, ${bgc[2] + 10}%)`;
+      }
+    }
+  }
+};
+let darkenEvent = (e) => {
+  let bgc = getComputedStyle(e.target).backgroundColor;
+  if (bgc.indexOf("rgba") > -1) {
+    bgc = RGBToHSL(bgc, true);
+    if (bgc[2] !== 0) {
+      if (bgc[2] - 10 <= 0) {
+        e.target.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 0%, 1)`;
+      } else {
+        e.target.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, ${bgc[2] - 10}%, 1)`;
+      }
+    }
+  } else {
+    bgc = RGBToHSL(bgc, false);
+    if (bgc[2] !== 0) {
+      if (bgc[2] - 10 <= 0) {
+        e.target.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 0%)`;
+      } else {
+        e.target.style.backgroundColor = `hsl(${bgc[0]}, ${bgc[1]}%, ${bgc[2] - 10}%)`;
+      }
+    }
+  }
+};
 //color related buttons
 for (let i in options) {
   options[i].addEventListener("click", (e) => {
     if (options[i].classList.contains("color")) {
-      colorMode = "c";
       currentColor = colorSelector.value;
       Array.from(canvas.children).forEach((child) => {
-        let newChild = child.cloneNode(true);
-        newChild.addEventListener("mouseenter", () => {
-          newChild.style.backgroundColor = currentColor;
-        });
-        child.parentNode.replaceChild(newChild, child);
+        switch (colorMode) {
+          case "e":
+            child.removeEventListener("mouseenter", eraserEvent);
+            break;
+          case "r":
+            child.removeEventListener("mouseenter", rainbowEvent);
+            break;
+          case "l":
+            child.removeEventListener("mouseenter", lightenEvent);
+            break;
+          case "d":
+            child.removeEventListener("mouseenter", darkenEvent);
+            break;
+          case "c":
+          default:
+            break;
+        }
+        child.addEventListener("mouseenter", colorEvent);
       });
+      colorMode = "c";
     } else if (options[i].classList.contains("eraser")) {
-      colorMode = "e";
       currentColor = "transparent";
       Array.from(canvas.children).forEach((child) => {
-        let newChild = child.cloneNode(true);
-        newChild.addEventListener("mouseenter", () => {
-          newChild.style.backgroundColor = currentColor;
-        });
-        child.parentNode.replaceChild(newChild, child);
+        switch (colorMode) {
+          case "c":
+            child.removeEventListener("mouseenter", colorEvent);
+            break;
+          case "r":
+            child.removeEventListener("mouseenter", rainbowEvent);
+            break;
+          case "l":
+            child.removeEventListener("mouseenter", lightenEvent);
+            break;
+          case "d":
+            child.removeEventListener("mouseenter", darkenEvent);
+            break;
+          case "e":
+          default:
+            break;
+        }
+        child.addEventListener("mouseenter", eraserEvent);
       });
+      colorMode = "e";
     } else if (options[i].classList.contains("rainbow")) {
+      Array.from(canvas.children).forEach((child) => {
+        switch (colorMode) {
+          case "c":
+            child.removeEventListener("mouseenter", colorEvent);
+            break;
+          case "e":
+            child.removeEventListener("mouseenter", eraserEvent);
+            break;
+          case "l":
+            child.removeEventListener("mouseenter", lightenEvent);
+            break;
+          case "d":
+            child.removeEventListener("mouseenter", darkenEvent);
+            break;
+          case "r":
+          default:
+            break;
+        }
+        child.addEventListener("mouseenter", rainbowEvent);
+      });
       colorMode = "r";
-      Array.from(canvas.children).forEach((child) => {
-        let newChild = child.cloneNode(true);
-        newChild.addEventListener("mouseenter", () => {
-          newChild.style.backgroundColor = `rgb(${randNum(255)}, ${randNum(255)}, ${randNum(255)})`;
-        });
-        child.parentNode.replaceChild(newChild, child);
-      });
     } else if (options[i].classList.contains("lighten")) {
+      Array.from(canvas.children).forEach((child) => {
+        switch (colorMode) {
+          case "c":
+            child.removeEventListener("mouseenter", colorEvent);
+            break;
+          case "e":
+            child.removeEventListener("mouseenter", eraserEvent);
+            break;
+          case "r":
+            child.removeEventListener("mouseenter", rainbowEvent);
+            break;
+          case "d":
+            child.removeEventListener("mouseenter", darkenEvent);
+            break;
+          case "l":
+          default:
+            break;
+        }
+        child.addEventListener("mouseenter", lightenEvent);
+      });
       colorMode = "l";
-      Array.from(canvas.children).forEach((child) => {
-        let newChild = child.cloneNode(true);
-        newChild.addEventListener("mouseenter", (e) => {
-          let bgc = getComputedStyle(e.target).backgroundColor;
-          if (bgc.indexOf("rgba") > -1) {
-            bgc = RGBToHSL(bgc, true);
-            if (bgc[2] !== 0) {
-              if (bgc[2] + 10 >= 100) {
-                newChild.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 100%, 1)`;
-              } else {
-                newChild.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, ${bgc[2] + 10}%, 1)`;
-              }
-            }
-          } else {
-            bgc = RGBToHSL(bgc, false);
-            if (bgc[2] !== 0) {
-              if (bgc[2] + 10 >= 100) {
-                newChild.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 100%)`;
-              } else {
-                newChild.style.backgroundColor = `hsl(${bgc[0]}, ${bgc[1]}%, ${bgc[2] + 10}%)`;
-              }
-            }
-          }
-        });
-        child.parentNode.replaceChild(newChild, child);
-      });
     } else if (options[i].classList.contains("darken")) {
-      colorMode = "d";
       Array.from(canvas.children).forEach((child) => {
-        let newChild = child.cloneNode(true);
-        newChild.addEventListener("mouseenter", (e) => {
-          let bgc = getComputedStyle(e.target).backgroundColor;
-          if (bgc.indexOf("rgba") > -1) {
-            bgc = RGBToHSL(bgc, true);
-            if (bgc[2] !== 0) {
-              if (bgc[2] - 10 <= 0) {
-                newChild.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 0%, 1)`;
-              } else {
-                newChild.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, ${bgc[2] - 10}%, 1)`;
-              }
-            }
-          } else {
-            bgc = RGBToHSL(bgc, false);
-            if (bgc[2] !== 0) {
-              if (bgc[2] - 10 <= 0) {
-                newChild.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 0%)`;
-              } else {
-                newChild.style.backgroundColor = `hsl(${bgc[0]}, ${bgc[1]}%, ${bgc[2] - 10}%)`;
-              }
-            }
-          }
-        });
-        child.parentNode.replaceChild(newChild, child);
+        switch (colorMode) {
+          case "c":
+            child.removeEventListener("mouseenter", colorEvent);
+            break;
+          case "e":
+            child.removeEventListener("mouseenter", eraserEvent);
+            break;
+          case "r":
+            child.removeEventListener("mouseenter", rainbowEvent);
+            break;
+          case "l":
+            child.removeEventListener("mouseenter", lightenEvent);
+            break;
+          case "d":
+          default:
+            break;
+        }
+        child.addEventListener("mouseenter", darkenEvent);
       });
+      colorMode = "d";
     }
 
     options[i].classList.add("pressed");
