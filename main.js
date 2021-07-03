@@ -44,7 +44,8 @@ let lightenEvent = (e) => {
   let bgc = getComputedStyle(e.target).backgroundColor;
   if (bgc.indexOf("rgba") > -1) {
     bgc = RGBToHSL(bgc, true);
-    if (bgc[2] !== 0) {
+    if (bgc[3] === 0) {
+    } else if (bgc[2] !== 100) {
       if (bgc[2] + 10 >= 100) {
         e.target.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 100%, 1)`;
       } else {
@@ -53,7 +54,7 @@ let lightenEvent = (e) => {
     }
   } else {
     bgc = RGBToHSL(bgc, false);
-    if (bgc[2] !== 0) {
+    if (bgc[2] !== 100) {
       if (bgc[2] + 10 >= 100) {
         e.target.style.backgroundColor = `hsla(${bgc[0]}, ${bgc[1]}%, 100%)`;
       } else {
