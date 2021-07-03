@@ -109,7 +109,7 @@
 }
 
 .app .tools .pixel {
-  width: 180px;
+  width: 150px;
   height: 60px;
   cursor: auto;
 }
@@ -266,6 +266,11 @@
   overflow: hidden;
   display: -ms-grid;
   display: grid;
+  cursor: crosshair;
+}
+
+.app .main .canvas div:hover {
+  border: 1px dotted black;
 }
 
 .dark-on {

@@ -102,7 +102,7 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
     }
 
     .pixel {
-      width: 180px;
+      width: 150px;
       height: 60px;
       cursor: auto;
 
@@ -247,6 +247,11 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
       border-radius: 5px;
       overflow: hidden;
       display: grid;
+      cursor: crosshair;
+
+      div:hover {
+        border: 1px dotted black;
+      }
     }
   }
 }
