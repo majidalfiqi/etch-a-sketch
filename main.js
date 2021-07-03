@@ -242,8 +242,8 @@ mano.addEventListener("mouseup", () => mano.classList.remove("pressed"));
 //logic
 function generateGrid() {
   canvas.innerHTML = "";
-  let rows = Math.floor(1100 / pixelSize);
-  let columns = Math.floor(710 / pixelSize);
+  let rows = Math.floor(770 / pixelSize);
+  let columns = Math.floor(1350 / pixelSize);
   let count = rows * columns;
   canvas.style.gridTemplateColumns = `repeat(${columns}, ${pixelSize}px)`;
   canvas.style.gridTemplateRows = `repeat(${rows}, ${pixelSize}px)`;
