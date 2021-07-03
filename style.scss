@@ -61,6 +61,7 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
     .pressed {
       background: $clr-pressed;
       box-shadow: $shd-pressed;
+      color: $clr-accent;
     }
 
     & > div {
@@ -90,8 +91,6 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
         height: 40%;
         border: none;
         border-radius: 50%;
-        outline: none;
-        box-shadow: none;
         background: transparent;
         cursor: pointer;
       }
@@ -233,6 +232,7 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
     margin: 20px;
     display: grid;
     place-items: center;
+    overflow: hidden;
 
     .canvas {
       width: 90%;
@@ -241,6 +241,7 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
       box-shadow: $shd-pressed;
       border-radius: 5px;
       overflow: hidden;
+      display: grid;
     }
   }
 }
@@ -261,6 +262,7 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
     .pressed {
       background: $clr-pressed-dark;
       box-shadow: $shd-pressed-dark;
+      color: $clr-accent;
     }
 
     & > div {
@@ -302,6 +304,11 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
       .github {
         background: $clr-normal-dark;
         box-shadow: $shd-normal-dark;
+      }
+
+      .pressed {
+        background: $clr-pressed-dark;
+        box-shadow: $shd-pressed-dark;
       }
     }
   }

@@ -63,6 +63,7 @@
   background: #e0e0e0;
   -webkit-box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
           box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
+  color: #46a0fb;
 }
 
 .app .tools > div {
@@ -98,9 +99,6 @@
   height: 40%;
   border: none;
   border-radius: 50%;
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
   background: transparent;
   cursor: pointer;
 }
@@ -251,6 +249,7 @@
   display: -ms-grid;
   display: grid;
   place-items: center;
+  overflow: hidden;
 }
 
 .app .main .canvas {
@@ -261,6 +260,8 @@
           box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #fff;
   border-radius: 5px;
   overflow: hidden;
+  display: -ms-grid;
+  display: grid;
 }
 
 .dark-on {
@@ -284,6 +285,7 @@
   background: #26282c;
   -webkit-box-shadow: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
           box-shadow: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
+  color: #46a0fb;
 }
 
 .dark-on .tools > div {
@@ -325,6 +327,12 @@
   background: linear-gradient(145deg, #292b2f, #222428);
   -webkit-box-shadow: 10px 10px 15px #202225, -10px -10px 15px #2c2e33;
           box-shadow: 10px 10px 15px #202225, -10px -10px 15px #2c2e33;
+}
+
+.dark-on .tools .icons .pressed {
+  background: #26282c;
+  -webkit-box-shadow: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
+          box-shadow: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
 }
 
 .dark-on .main {
