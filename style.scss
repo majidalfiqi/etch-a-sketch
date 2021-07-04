@@ -330,6 +330,10 @@ $shd-pressed-dark: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
     .canvas {
       background-color: $clr-pressed-dark;
       box-shadow: $shd-pressed-dark;
+
+      div:hover {
+        border: 1px dotted white;
+      }
     }
   }
 }

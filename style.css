@@ -355,4 +355,8 @@
   -webkit-box-shadow: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
           box-shadow: inset 10px 10px 15px #202225, inset -10px -10px 15px #2c2e33;
 }
+
+.dark-on .main .canvas div:hover {
+  border: 1px dotted white;
+}
 /*# sourceMappingURL=style.css.map */
